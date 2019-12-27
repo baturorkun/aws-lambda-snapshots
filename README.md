@@ -1,4 +1,4 @@
-### Snapshot EBS Volumes of Instances
+### Creating Snapshot for EBS Volumes of Instances
 
 #### To include any Instance to Backup Process 
 
