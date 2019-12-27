@@ -10,10 +10,21 @@ The lambda script will select the instances has tag named Backup with value "tru
 
 "retention" value in event.json
 
+### Settings
+
 #### Event Parameters (event.json) 
 
 * account_id: Your AWS Account ID
 * retention : The day value which describe how long should they be archived.
+
+#### AWS Credentials
+
+If you set AWS Credentials already in OS, you don't need write your credentials to config.yaml. However if you have not yet, you must write your credentials to  config.yaml. 
+
+* aws_access_key_id: XXXXX
+* aws_secret_access_key: XXXXXXXXXXXX
+
+This setting is required just "lambda invoke" command. 
 
 #### Test Running & Deploy
 
