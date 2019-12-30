@@ -16,6 +16,7 @@ The lambda script will select the instances has tag named Backup with value "tru
 
 * account_id: Your AWS Account ID
 * retention : The day value which describe how long should they be archived.
+* keep_last_snap: Do not delete last snapshot
 
 #### AWS Credentials
 
