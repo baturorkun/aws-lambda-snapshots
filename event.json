@@ -1,4 +1,5 @@
 {
   "account_id": "0123456789",
-  "retention": 7
+  "retention": 7,
+  "keep_last_snap": true
 }

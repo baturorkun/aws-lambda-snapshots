@@ -6,7 +6,7 @@ import datetime
 ec = boto3.client('ec2')
 
 def handler(event, context):
-    Backup()
+    #Backup()
     Clean(event)
 
 
@@ -110,6 +110,11 @@ def Clean(event):
             print("Skip this snapshot because of Stopped/Terminated Instance Snap %s" % (snap['SnapshotId']))
             continue
 
+        if event.get('keep_last_snap'):
+            if GetSnapCount(snap['VolumeId']) == 1:
+                print("Keep last Snap %s for %s" % (snap['SnapshotId'], snap['VolumeId']))
+                continue
+
         a = snap['StartTime']
         b = a.date()
         c = datetime.datetime.now().date()
@@ -139,6 +144,18 @@ def CheckStoppedSnap(volumeId):
             {
                 'Name': 'tag:StateName',
                 'Values': ["stopped"]
+            }
+        ]
+    )
+    return len(response['Snapshots'])
+
+
+def GetSnapCount(volumeId):
+    response = ec.describe_snapshots(
+        Filters=[
+            {
+                'Name': 'volume-id',
+                'Values': [volumeId]
             }
         ]
     )
